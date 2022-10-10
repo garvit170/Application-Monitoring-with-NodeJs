@@ -1,0 +1,21 @@
+version: '3.9'
+networks:
+  monitoring:
+    driver: bridge
+
+services:
+  web:
+    build: 
+      context: ./
+    volumes:
+      - logs-volume:/logs
+    command: node index.js
+    expose:
+      - 4500
+    ports:
+      - 4500:4500
+    networks:
+      - monitoring
+
+volumes:
+  logs-volume:
