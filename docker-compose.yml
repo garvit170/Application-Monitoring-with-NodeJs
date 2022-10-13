@@ -10,12 +10,28 @@ services:
     volumes:
       - logs-volume:/logs
     command: node index.js
+    # Uncomment and add your environment variabls/file as per requirements
+    # environment:
+    #   - name=value
+    # env_file:
+    #   - fileName
     expose:
       - 4500
     ports:
       - 4500:4500
     networks:
       - monitoring
+
+  promtail: 
+    image: grafana/promtail:2.5.0
+    # environment:
+    #   - name=value
+    volumes:
+      - logs-volume:/logs
+      - ./promtail-config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml #-config.expand-env=true
+    links:
+      - web
 
 volumes:
   logs-volume:

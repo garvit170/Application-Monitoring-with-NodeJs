@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/garvit170/Application-Monitoring-with-NodeJs#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "winston": "^3.8.2"
   }
 }

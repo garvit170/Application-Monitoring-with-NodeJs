@@ -1,4 +1,5 @@
 const express = require('express');
+const logger = require('./logger');
 const app=express();
 const port = 4500;
 
@@ -18,6 +19,7 @@ app.post("/bye", (req,res) => res.send("POST Request : "+ req));
 
 // Mock slow endpoint, waiting between 3 and 6 seconds to return a response
 app.get('/slow', async (req, res) => {
+    logger.info('Slow route called')
     if ((Math.floor(Math.random() * 100)) === 0) {
         throw new Error('Internal Error')
     }
@@ -29,12 +31,8 @@ app.get('/slow', async (req, res) => {
 
 app.listen(port,function(err){
     if(err){
-        console.log(`Error encountered in running the server: ${err}`);
+        logger.err(`Error encountered in running the server: ${err}`);
         return;
     }
-    console.log(`Server is running on port: ${port}`);
-});
-
-
-
-   
+    logger.info(`Server is running on port: ${port}`);
+});   
