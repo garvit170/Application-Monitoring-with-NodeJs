@@ -32,6 +32,20 @@ services:
     command: -config.file=/etc/promtail/config.yml #-config.expand-env=true
     links:
       - web
+  
+  prometheus:
+    image: prom/prometheus:v2.20.1
+    volumes:
+      - ./prometheus-config.yaml:/etc/prometheus/config.yml
+      - prometheus_data:/prometheus
+    command: --config.file=/etc/prometheus/config.yml
+    ports:
+      - 9090:9090
+    expose:
+      - 9090
+    networks:
+      - monitoring
 
 volumes:
   logs-volume:
+  prometheus_data: 

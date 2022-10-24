@@ -18,6 +18,7 @@
   "homepage": "https://github.com/garvit170/Application-Monitoring-with-NodeJs#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "express-prometheus-middleware": "^1.2.0",
     "winston": "^3.8.2"
   }
 }

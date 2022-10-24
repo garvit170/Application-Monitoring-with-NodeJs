@@ -2,8 +2,20 @@ const express = require('express');
 const logger = require('./logger');
 const app=express();
 const port = 4500;
+const promMid= require('express-prometheus-middleware');
 
 app.use(express.urlencoded({extended: false}));
+
+const metricsMiddleware = promMid({
+    metricsPath: '/metrics',
+    collectDefaultMetrics: true,
+    requestDurationBuckets: [0.1, 0.5, 1, 1.5],
+    requestLengthBuckets: [512, 1024, 5120, 10240, 51200, 102400],
+    responseLengthBuckets: [512, 1024, 5120, 10240, 51200, 102400],
+  });
+  
+// add the prometheus middleware to all routes
+app.use(metricsMiddleware);
 
 app.get("/",(req,res) => res.json({
     "GET /": "All Routes", 
