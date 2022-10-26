@@ -45,6 +45,18 @@ services:
       - 9090
     networks:
       - monitoring
+  
+  collector:
+    image: otel/opentelemetry-collector:0.23.0
+    command: '--config /etc/otel-config.yaml'
+    volumes:
+      - ./otel-config.yml:/etc/otel-config.yaml
+    ports:
+      - 14268:14268
+    expose:
+      - 14268
+    networks:
+      - monitoring
 
 volumes:
   logs-volume:

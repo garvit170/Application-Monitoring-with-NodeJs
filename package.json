@@ -17,8 +17,15 @@
   },
   "homepage": "https://github.com/garvit170/Application-Monitoring-with-NodeJs#readme",
   "dependencies": {
+    "@opentelemetry/api": "^1.2.0",
+    "@opentelemetry/exporter-jaeger": "^1.7.0",
+    "@opentelemetry/instrumentation-http": "^0.33.0",
+    "@opentelemetry/instrumentation-mongodb": "^0.32.1",
+    "@opentelemetry/sdk-node": "^0.33.0",
+    "@opentelemetry/sdk-trace-node": "^1.7.0",
     "express": "^4.18.2",
     "express-prometheus-middleware": "^1.2.0",
+    "opentelemetry-instrumentation-express": "^0.32.0",
     "winston": "^3.8.2"
   }
 }

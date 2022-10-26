@@ -1,0 +1,22 @@
+receivers:
+ jaeger:
+   protocols:
+     thrift_compact:
+     thrift_http:
+
+processors:
+ batch:
+
+exporters:
+ logging:
+    loglevel: debug
+ otlp:
+   endpoint: tempo-us-central1.grafana.net:443
+   headers:
+     authorization: <hashed token from last step of setting up grafana cloud>
+ pipelines:
+   traces:
+     receivers: [jaeger]
+     processors: [batch]
+     exporters: [otlp]
+
