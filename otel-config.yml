@@ -14,9 +14,9 @@ exporters:
    endpoint: tempo-us-central1.grafana.net:443
    headers:
      authorization: <hashed token from last step of setting up grafana cloud>
+service:
  pipelines:
    traces:
      receivers: [jaeger]
      processors: [batch]
      exporters: [otlp]
-
